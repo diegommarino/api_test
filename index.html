@@ -33,8 +33,11 @@
         xhr.addEventListener("readystatechange", function() {
           if(this.readyState === 4) {
             console.log(this.responseText);
+            const url = JSON.parse(this.responseText).data.attributes.url
             const orderLink = document.getElementById('order')
-            const linkElement = document.createElement("a", { href: JSON.parse(this.responseText).data.attributes.url })
+            const linkElement = document.createElement("a")
+            linkElement.href = url
+            linkElement.title = "Order"
             orderLink.appendChild(linkElement)
           }
         });
