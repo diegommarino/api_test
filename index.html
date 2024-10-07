@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h2>HTML Forms</h2>
+
+    <form action="#">
+      <label for="jwt">JWT:</label><br>
+      <input type="text" id="jwt" name="jwt"><br>
+      <label for="npi">NPI:</label><br>
+      <input type="text" id="npi" name="npi"><br>
+      <label for="last_name">Last name:</label><br>
+      <input type="text" id="last_name" name="last_name" value="Doe"><br><br>
+      <input type="submit" id="submit" value="Submit">
+    </form> 
+    <div id="order"></div>
+
+    <script>
+      const button = document.getElementById('submit')
+      button.addEventListener("click", (event) => {
+        event.preventDefault()
+        const jwt = document.getElementById('jwt').value
+        const last_name = document.getElementById('last_name').value
+
+        let data = new FormData();
+        data.append("patient_last_name", last_name);
+        data.append("account_npi", npi);
+
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function() {
+          if(this.readyState === 4) {
+            console.log(this.responseText);
+            const orderLink = document.getElementById('order')
+            orderLink.innerHTML = this.responseText
+          }
+        });
+
+        xhr.open("POST", "https://lablink-staging.opticalonline.com/api/v1/orders/");
+
+        xhr.setRequestHeader("Authorization", "Token " + jwt);
+        xhr.send(data);
+      });
+    </script>
+  </body>
+</html>
+
+
