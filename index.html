@@ -34,11 +34,12 @@
           if(this.readyState === 4) {
             console.log(this.responseText);
             const url = JSON.parse(this.responseText).data.attributes.url
-            const orderLink = document.getElementById('order')
-            const linkElement = document.createElement("a")
-            linkElement.href = url
-            linkElement.title = "Order"
-            orderLink.appendChild(linkElement)
+            const linkContainer = document.getElementById('order')
+            const a = document.createElement("a")
+            a.href = url
+            a.title = "Order"
+            a.appendChild(document.createTextNode("Order link"))
+            linkContainer.appendChild(a)
           }
         });
 
