@@ -34,7 +34,8 @@
           if(this.readyState === 4) {
             console.log(this.responseText);
             const orderLink = document.getElementById('order')
-            orderLink.innerHTML = this.responseText
+            const linkElement = document.createElement("a", { href: this.responseText.data.attributes.url })
+            orderLink.appendChild(linkElement)
           }
         });
 
