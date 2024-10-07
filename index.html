@@ -21,6 +21,7 @@
         event.preventDefault()
         const jwt = document.getElementById('jwt').value
         const last_name = document.getElementById('last_name').value
+        const npi = document.getElementById('npi').value
 
         let data = new FormData();
         data.append("patient_last_name", last_name);
@@ -40,7 +41,6 @@
         xhr.open("POST", "https://lablink-staging.opticalonline.com/api/v1/orders/");
 
         xhr.setRequestHeader("Authorization", "Token " + jwt);
-        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
         xhr.send(data);
       });
     </script>
